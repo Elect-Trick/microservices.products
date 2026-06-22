@@ -4,24 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using InfrastructureLayer.DatabaseContext;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace InfrastructureLayer.DependencyInjection;
     
     public static class DependencyInjection
     {
 
-    public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration, DbContext dbContext)
+    public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services)
         {
       
                 
         services.AddScoped<IProductService, ProductService>();
-
-            services.AddDbContext<EfDbContext>(options =>
-           options.UseSqlServer(
-               configuration.GetConnectionString("DefaultConnection"),
-               b => b.MigrationsAssembly(typeof(EfDbContext).Assembly.FullName)
-           )
-       );
-            return services;
-        }
+        return services;
+        
+    }
     }
