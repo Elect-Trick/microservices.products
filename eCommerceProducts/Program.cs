@@ -1,8 +1,16 @@
-using InfrastructureLayer.DependencyInjection;
 using ApplicationLayer.DependencyInjection;
 using eCommerceProducts.Middlewares;
+using InfrastructureLayer.DatabaseContext;
+using InfrastructureLayer.DependencyInjection;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+
+
 builder.Services.AddInfrastructureLayer();
+builder.Services.AddDbContext<EfDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 builder.Services.AddApplicationLayer();
 builder.Services.AddControllers();
 
