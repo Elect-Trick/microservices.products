@@ -1,3 +1,7 @@
 <Solution>
+  <Project Path="../ApplicationLayer/ApplicationLayer.csproj" />
+  <Project Path="../DomanLayer/DomanLayer.csproj" />
+  <Project Path="../InfrastructureLayer/InfrastructureLayer.csproj" />
+  <Project Path="../PresentationLayer/PresentationLayer.csproj" />
   <Project Path="eCommerceProducts.csproj" />
 </Solution>

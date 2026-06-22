@@ -5,13 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureLayer.DependencyInjection
+namespace ApplicationLayer.DependencyInjection
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services)
+        public static IServiceCollection AddApplicationLayer(this IServiceCollection services)
         {
             return services;
+
         }
     }
 }
