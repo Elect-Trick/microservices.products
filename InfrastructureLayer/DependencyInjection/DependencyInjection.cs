@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using ApplicationLayer.ServiceContracts;
+using InfrastructureLayer.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,8 @@ namespace InfrastructureLayer.DependencyInjection
     {
         public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services)
         {
+           
+            services.AddScoped<IProductService, ProductService>();
             return services;
         }
     }
