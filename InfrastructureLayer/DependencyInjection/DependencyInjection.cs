@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using InfrastructureLayer.DatabaseContext;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using DomanLayer.RepositoryContracts;
+using InfrastructureLayer.Repositories;
 
 namespace InfrastructureLayer.DependencyInjection;
     
@@ -13,8 +15,9 @@ namespace InfrastructureLayer.DependencyInjection;
 
     public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services)
         {
-      
-                
+
+
+        services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IProductService, ProductService>();
         return services;
         

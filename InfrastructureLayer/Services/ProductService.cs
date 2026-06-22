@@ -2,8 +2,8 @@
 using ApplicationLayer.ServiceContracts;
 using DomanLayer.Entities;
 
-namespace InfrastructureLayer.Services
-{
+namespace InfrastructureLayer.Services;
+
     public class ProductService : IProductService
     {
         public Task<Product?> AddProduct(ProductDTO productDTO)
@@ -31,4 +31,3 @@ namespace InfrastructureLayer.Services
             throw new NotImplementedException();
         }
     }
-}
