@@ -18,7 +18,6 @@ public partial class EfDbContext : DbContext
     }
 
 
-
     public virtual DbSet<Product> Products { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,8 +25,10 @@ public partial class EfDbContext : DbContext
         modelBuilder.Entity<Product>(entity =>
         {
             entity
-                .HasNoKey()
                 .ToTable("product");
+
+            entity.HasKey(e => e.ProductID)
+                    .HasName("PK_product");
 
             entity.Property(e => e.Category)
                 .IsRequired()
@@ -35,8 +36,9 @@ public partial class EfDbContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("category");
             entity.Property(e => e.ProductID)
+            .HasColumnName("id")
                 .ValueGeneratedOnAdd()
-                .HasColumnName("id");
+                              .UseIdentityColumn();
             entity.Property(e => e.ProductName)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -44,7 +46,7 @@ public partial class EfDbContext : DbContext
                 .HasColumnName("productName");
             entity.Property(e => e.QuantityInStock).HasColumnName("quantityInStock");
             entity.Property(e => e.UnitPrice)
-                .HasColumnType("decimal(18, 0)")
+                .HasColumnType("decimal(18, 2)")
                 .HasColumnName("unitPrice");
         });
 
