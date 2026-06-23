@@ -1,12 +1,20 @@
 ﻿using ApplicationLayer.DTOS;
 using ApplicationLayer.ServiceContracts;
 using DomanLayer.Entities;
+using DomanLayer.RepositoryContracts;
 
 namespace InfrastructureLayer.Services;
 
     public class ProductService : IProductService
     {
-        public Task<Product?> AddProduct(ProductDTO productDTO)
+
+    private readonly IProductRepository _productRepository;
+    public ProductService(IProductRepository productRepository)
+    {
+        _productRepository = productRepository;
+    }
+
+    public Task<Product?> AddProduct(ProductDTO productDTO)
         {
             throw new NotImplementedException();
         }
@@ -16,9 +24,15 @@ namespace InfrastructureLayer.Services;
             throw new NotImplementedException();
         }
 
-        public Task<Product?> GetProductById(int id)
+        public async Task<Product?> GetProductById(int id)
         {
-            throw new NotImplementedException();
+            Product? product = await _productRepository.GetProductById(id);
+
+        if (product == null)
+        {
+            return null;
+        }
+            return product;
         }
 
         public Task<Product?> GetProductByName(string name)
