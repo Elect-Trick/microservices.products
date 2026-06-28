@@ -14,17 +14,25 @@ namespace InfrastructureLayer.Services;
         _productRepository = productRepository;
     }
 
-    public Task<Product?> AddProduct(ProductDTO productDTO)
+    public async Task<Product?> AddProduct(ProductDTO product)
         {
-            throw new NotImplementedException();
-        }
+        Product _product = new Product(); 
+        _product.ProductName = product.ProductName;
+        _product.UnitPrice = product.UnitPrice;
+        _product.Category = product.Category;
+        _product.QuantityInStock = product.QuantityInStock;
 
-        public Task<Product?> DeleteProduct(Product productDTO)
-        {
-            throw new NotImplementedException();
-        }
+        Product? result = await _productRepository.AddProduct(_product);
+        return result;
+    }
 
-        public async Task<Product?> GetProductById(int id)
+    public async Task<Product[]> GetAllProducts()
+    {
+       Product[] result = await _productRepository.GetAllProducts();
+        return result;
+    }
+
+    public async Task<Product?> GetProductById(int id)
         {
             Product? product = await _productRepository.GetProductById(id);
 
@@ -35,13 +43,27 @@ namespace InfrastructureLayer.Services;
             return product;
         }
 
-        public Task<Product?> GetProductByName(string name)
+        public async Task<Product[]> GetProductByName(string name)
         {
-            throw new NotImplementedException();
+            Product[] products = await _productRepository.GetProductByName(name);
+            if (products == null || products.Length == 0)
+            {
+                return new Product[0];
+            }
+            return products; // or use FirstOrDefault if you prefer LINQ
+    
         }
 
         public Task<Product?> UpdateProduct(Product product)
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> DeleteProduct(Product product) { 
+
+        bool success = await _productRepository.DeleteProduct(product);
+        return success;
+
     }
+
+}
