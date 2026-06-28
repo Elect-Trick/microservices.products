@@ -10,11 +10,12 @@ namespace ApplicationLayer.ServiceContracts
 {
     public interface IProductService
     {
-        Task<Product?> AddProduct(ProductDTO productDTO);
+        Task<Product?> AddProduct(ProductDTO product);
         Task<Product?> UpdateProduct(Product product);
-        Task<Product?> DeleteProduct(Product productDTO);
+        Task<bool> DeleteProduct(Product productDTO);
         Task<Product?> GetProductById(int id);
-        Task<Product?> GetProductByName(string name);
+        Task<Product[]> GetProductByName(string name);
+        Task<Product[]> GetAllProducts();
 
     }
 }
