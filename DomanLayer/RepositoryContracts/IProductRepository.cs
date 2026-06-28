@@ -7,5 +7,11 @@ namespace DomanLayer.RepositoryContracts
     {
 
         Task<Product?> GetProductById(int id);
+        Task<Product?> AddProduct(Product product);
+
+        Task<Product[]> GetAllProducts();
+        Task<bool> DeleteProduct(Product product);
+
+        Task<Product[]> GetProductByName(string name);
     }
 }
