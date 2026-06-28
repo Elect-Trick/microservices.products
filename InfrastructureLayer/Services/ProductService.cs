@@ -50,7 +50,7 @@ namespace InfrastructureLayer.Services;
             {
                 return new Product[0];
             }
-            return products; // or use FirstOrDefault if you prefer LINQ
+            return products; 
     
         }
 
