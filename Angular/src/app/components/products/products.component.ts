@@ -28,6 +28,7 @@ export class ProductsComponent {
     this.productsService.getProducts().subscribe({
       next: (response: ProductResponse[]) => {
         this.products = response;
+        console.log('Products fetched successfully:', response);
       },
 
       error: (err) => {
