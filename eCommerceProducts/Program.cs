@@ -20,6 +20,15 @@ builder.Services.AddAutoMapper(cfgs =>
     cfgs.AddMaps(typeof(ProductMapper).Assembly);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("https://localhost:4200")
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddApplicationLayer();
 builder.Services.AddControllers();
@@ -32,6 +41,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseHttpsRedirection();
+app.UseCors();
 
 app.MapControllers();
 
