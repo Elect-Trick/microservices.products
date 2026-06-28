@@ -1,5 +1,6 @@
 ﻿using ApplicationLayer.DTOS;
 using ApplicationLayer.ServiceContracts;
+using AutoMapper;
 using DomanLayer.Entities;
 using DomanLayer.RepositoryContracts;
 
@@ -9,18 +10,16 @@ namespace InfrastructureLayer.Services;
     {
 
     private readonly IProductRepository _productRepository;
-    public ProductService(IProductRepository productRepository)
+    private IMapper _mapper;
+    public ProductService(IProductRepository productRepository, IMapper mapper)
     {
         _productRepository = productRepository;
+        _mapper = mapper;
     }
 
     public async Task<Product?> AddProduct(ProductDTO product)
         {
-        Product _product = new Product(); 
-        _product.ProductName = product.ProductName;
-        _product.UnitPrice = product.UnitPrice;
-        _product.Category = product.Category;
-        _product.QuantityInStock = product.QuantityInStock;
+        Product _product = _mapper.Map<Product>(product); 
 
         Product? result = await _productRepository.AddProduct(_product);
         return result;
