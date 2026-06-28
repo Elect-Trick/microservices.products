@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationLayer.DTOS
 {
-    public class ProductDTO
+    public record ProductDTO
     {
 
         public string ProductName { get; set; }
