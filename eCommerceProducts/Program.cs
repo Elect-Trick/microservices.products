@@ -1,5 +1,4 @@
 using ApplicationLayer.DependencyInjection;
-using ApplicationLayer.DTOS;
 using ApplicationLayer.Mappers;
 using ApplicationLayer.Validators;
 using eCommerceProducts.Middlewares;
@@ -44,6 +43,4 @@ app.UseHttpsRedirection();
 app.UseCors();
 
 app.MapControllers();
-
-
 app.Run();
